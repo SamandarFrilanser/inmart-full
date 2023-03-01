@@ -1,0 +1,58 @@
+{% extends 'bases.html' %}
+{% load static %}
+{% block css %}
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+{% endblock %}
+<body>
+{% block content %}
+    <!-- Connect section starts -->
+    <section class="connect">
+        <div class="heading">
+            <h2>BOG'LANISH</h2>
+        </div>
+        <div class="connect-content">
+            <div class="connect-text">
+                <p class="operator">Bizning operatorlar bilan bog’lanish uchun ushbu raqamlarga qo’ng’iroq qiling</p>
+                <div class="phone-number">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+998 93 762 91 89
+                    </p>
+                </div>
+                <div class="phone-number">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+998 93 762 91 89
+                    </p>
+                </div>
+            </div>
+
+            <div class="connect-network">
+                <p>Bizni ijtimoiy tarmoqlarimizda kuzatib boring</p>
+                <div class="networks">
+                    <div class="facebook">
+                        <a href=""><span>Facebook</span></a>
+                    </div>
+                    <div class="instagram">
+                        <a href="https://www.instagram.com/inmart_supermarket/"
+                           target="_blank"><span>Instagram</span></a>
+                    </div>
+                    <div class="telegram">
+                        <a href="https://t.me/inmart_supermarket" target="_blank"><span>Telegram</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

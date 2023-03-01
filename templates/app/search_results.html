@@ -1,0 +1,210 @@
+{% extends 'bases.html' %}
+{% load static %}
+{% block css %}
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+{% endblock %}
+{% block content %}
+    <!-- Intro Section Start -->
+    <section class="intro">
+        <div class="container">
+            <form action="{% url 'stores:search' %}">
+                {% csrf_token %}
+                <div class="m-searchbar">
+                    <label for="searchInput">
+                        <button type="submit">
+                            <img src="{% static 'images/icons/search.png' %}" alt="search"/>
+                        </button>
+                    </label>
+                    <input
+                            name="q"
+                            id="searchInput"
+                            type="text"
+                            placeholder="Mahsulotlarni qidirish"
+                    />
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Intro Section End -->
+
+    <!-- Section 2 -->
+    <section class="section-2">
+        <div class="container">
+            <div class="section-top">
+                <h2 class="section-title">
+                    {% if search_results %}
+                        "{{ q }}" bo'yicha natijalar!!!
+                    {% else %}
+                        "{{ q }}" bo'yicha hech nima topilmadi!!!
+                    {% endif %}
+                </h2>
+                <div class="lr-btns">
+                    <button class="arrow-btn left-btn" id="prev_btn">
+                        <img src="{% static 'images/icons/leftarrow.svg' %}" alt="left"/>
+                    </button>
+                    <button class="arrow-btn right-btn active" id="next_btn">
+                        <img src="{% static 'images/icons/rightarrow.svg' %}" alt="right"/>
+                    </button>
+                </div>
+            </div>
+            <div class="section-banner">
+                <div class="row">
+                    <!-- Item -->
+                    {% for product in search_results %}
+                        <div class="banner-item padd-15 box_1" data-item-type="_{{ product.category.slug }}">
+                            <div class="card">
+                                <div class="card-img produc">
+                                    <img src="{{ product.get_images.image1 }}" alt="img"/>
+                                </div>
+                                <div class="card-info">
+                                    {% if product.is_stock %}
+                                        <div class="price">
+                                            <div class="current-price">
+                                                <span class="count">
+                                                    {{ product.get_price.price }}
+                                                </span>
+                                                <span class="money">so'm</span>
+                                                /
+                                                <span class="price-type">
+                                                    {{ product.qty }}
+                                                </span>
+                                            </div>
+                                            <div class="old-price" style="color: red">
+                                                <span class="count">
+                                                    {{ product.get_price.old_price }}
+                                                </span>
+                                                <span class="money">so'm</span>
+                                                /
+                                                <span class="price-type">
+                                                {{ product.qty }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="price">
+                                            <div class="current-price">
+                                                <span class="count">
+                                                    {{ product.price }}
+                                                </span>
+                                                <span class="money">so'm</span>
+                                                /
+                                                <span class="price-type">
+                                                    {{ product.qty }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    <span class="product-name">
+                                        {{ product.name }}
+                                    </span>
+                                    <button class="add-cart__btn" onclick="modal_func({{ product.id }})">
+                                        Savatchaga qo’shish
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Modal Start-->
+                        <div style="display: none;" class="modal-wrapper modal-{{ product.id }}">
+                            <div class="modal-box">
+                                <div class="product-img">
+                                    <div class="main-img">
+                                        <img id="edit-image-{{ product.id }}" src="{{ product.get_images.image1 }}"
+                                             alt="img"/>
+                                    </div>
+                                    <div class="other-imgs">
+                                        <div class="pr-other__img">
+                                            <img src="{{ product.get_images.image1 }}" alt="img"
+                                                 onclick="change_image('{{ product.get_images.image1 }}', {{ product.id }})"/>
+                                        </div>
+                                        {% if product.get_images.image2 %}
+                                            <div class="pr-other__img">
+                                                <img src="{{ product.get_images.image2 }}" alt="img"
+                                                     onclick="change_image('{{ product.get_images.image2 }}', {{ product.id }})"/>
+                                            </div>
+                                        {% endif %}
+                                        {% if product.get_images.image3 %}
+                                            <div class="pr-other__img">
+                                                <img src="{{ product.get_images.image3 }}" alt="img"
+                                                     onclick="change_image('{{ product.get_images.image3 }}', {{ product.id }})"/>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="info-top">
+                                        <h2 class="product-title">
+                                            {{ product.name }}
+                                        </h2>
+                                        <div class="del-info">
+                                            <div class="info">
+                                                <img src="{% static 'images/icons/time.svg' %}" alt="info"/>
+                                                <span>15 daq</span>
+                                            </div>
+                                            <div class="info">
+                                                <img src="{% static 'images/icons/distance.svg' %}" alt="info"/>
+                                                <span>1.2 km</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text">
+                                        {{ product.description }}
+                                    </p>
+                                    {% if product.is_stock %}
+                                        <div class="price">
+                                            <div class="current-price">
+                                                <span class="count">{{ product.get_price.price }}</span>
+                                                <span class="money">so'm</span>
+                                                /
+                                                <span class="price-type">
+                                                   {{ product.qty }}
+                                                </span>
+                                            </div>
+                                            <div class="old-price" style="color: red">
+                                                <span class="count">
+                                                    {{ product.get_price.old_price }}
+                                                </span>
+                                                <span class="money">so'm</span>
+                                                /
+                                                <span class="price-type">
+                                                    {{ product.qty }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="price">
+                                            <div class="current-price">
+                                                <span class="count">{{ product.price }}</span>
+                                                <span class="money">so'm</span>
+                                                /
+                                                <span class="price-type">
+                                                    {{ product.qty }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="modal-btns">
+                                        <button class="buy-btn" id="buy-btn-{{ product.id }}">Sotib olish</button>
+                                        <div class="counter">
+                                            <button class="minus" id="remove-{{ product.id }}">-</button>
+                                            <span class="product-number" id="product-number-{{ product.id }}">0</span>
+                                            <button class="plus" id="add-{{ product.id }}">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Modal End-->
+                    {% endfor %}
+                    <!-- Item End-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section 2 End -->
+{% endblock %}

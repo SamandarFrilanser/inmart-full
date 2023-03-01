@@ -1,0 +1,33 @@
+@font-face{
+    font-family: 'SF-Pro_Bold';
+    src: url(./shrift/SF-Pro-Display-Bold.otf);
+}
+@font-face{
+    font-family: 'SF-Pro_Thin';
+    src: url(./shrift/SF-Pro-Display-Thin.otf);
+}
+@font-face{
+    font-family: 'SF-Pro_Medium';
+    src: url(./shrift/SF-Pro-Display-Medium.otf);
+}
+@font-face{
+    font-family: 'SF-Pro_Light';
+    src: url(./shrift/SF-Pro-Display-Light.otf);
+}
+@font-face{
+    font-family: 'SF-Pro_Semibold';
+    src: url(./shrift/SF-Pro-Display-Semibold.otf);
+}
+@font-face{
+    font-family: 'SF-Pro_Regular';
+    src: url(./shrift/SF-Pro-Display-Regular.otf);
+}
+@font-face{
+    font-family: 'SF-Pro_Black';
+    src: url(./shrift/SF-Pro-Display-Black.otf);
+}
+
+
+
+
+

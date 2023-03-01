@@ -1,0 +1,102 @@
+{% load static %}
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-banner">
+            <!-- Item -->
+            <div class="banner-item">
+                <img class="site-logo" src="{% static 'images/icons/logo.svg' %}" alt="logo"/>
+                <ul class="social-networks">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-telegram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Item End -->
+            <!-- Item -->
+            <div class="banner-item">
+                <h3 class="title">Inmart</h3>
+                <ul class="item-list">
+                    <li>
+                        <a href="{% url 'stores:about' %}"> Biz haqimizda </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'stores:home' %}"> Mahsulotlar </a>
+                    </li>
+                    <li>
+                        <a href="#"> Vakansiyalar </a>
+                    </li>
+                    <li>
+                        <a href="#"> Hamkor bo’lish </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Item End -->
+            <!-- Item -->
+            <div class="banner-item">
+                <h3 class="title">Xaridorga yordam</h3>
+                <ul class="item-list">
+                    <li>
+                        <a href="{% url 'stores:about' %}"> Biz qanday ishlaymiz </a>
+                    </li>
+                    <li>
+                        <a href="#"> FAQ </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'stores:checkout' %}"> To’lov tartibi </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'stores:checkout' %}l"> Yetkazib berish </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Item End -->
+            <!-- Item -->
+            <div class="banner-item">
+                <a class="phone-number" href="tel:+998998966666"
+                >+998 99 896-66-66</a
+                >
+                <p class="text">
+                    Ushbu qo’ng’iroq markazi orqali siz o’zingizning qiziqtirgan
+                    savollarga javob topishingiz mumkin.
+                </p>
+            </div>
+            <!-- Item End -->
+        </div>
+        <div class="footer-bottom">
+            <span class="subtext"> Barcha huquqlar himoyalangan </span>
+            <div class="right-side">
+                <span class="subtext">Ilovamizni yuklab oling</span>
+                <div class="btns">
+                    <button class="app-btn android-btn">
+                        <img src="{% static 'images/icons/android.svg' %}" alt=""/>
+                        <span class="title">
+                  <span>GET IT ON</span>
+                  <span>Google Play</span>
+                </span>
+                    </button>
+                    <button class="app-btn ios-btn">
+                        <img src="{% static 'images/icons/ios.svg' %}" alt=""/>
+                        <span class="title">
+                  <span>Download on the</span>
+                  <span>App Store</span>
+                </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer End -->

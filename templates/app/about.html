@@ -1,0 +1,57 @@
+{% extends 'bases.html' %}
+{% load static %}
+{% block css %}
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="about_us" id="about_us">
+        <div class="heading">
+            <h2>BIZ HAQIMIZDA</h2>
+        </div>
+        <div class="image">
+        </div>
+        <div class="content">
+            <div class="box-1">
+                <img src="{% static 'images/small-image.png' %}" alt="">
+                <div class="text">
+                    <p>“Inmart” supermarketlar tarmogʻi nafaqat Toshkent, balki respublika miqiyosida ham jadallik bilan
+                        rivojlanib borayotganligi tufayli oʻzaro aloqalar uchun nihoyatda manfaatli hamkor sanaladi.
+                        Xaridorlarimizga taklif etilayotgan muntazam toʻldirib boriluvchi tovarlar assortimenti uzoq
+                        yillik
+                        hamkorlik kelishuvlariga zamin yaratmoqda. <span class="content-text-span"></span> Biz yuqori
+                        darajadagi standartlarimiz va talablarimizni qoʻllab-quvvatlashga tayyor boʻlgan xususiy
+                        tadbirkorlar hamda dilerlik kompaniyalari uchun hamisha ochiqmiz. Buning ilk qadami sifatida
+                        quyidagi havolada keltirilgan “Taʻminotchi” portalimizga kirib anketa toʻldirishingiz mumkin.
+                    </p>
+                </div>
+            </div>
+            <div class="box-1">
+                <div class="text">
+                    <p>Chakana savdo sohasidagi oziq-ovqat va turdosh mahsulotlar boʻyicha tajribasi tufayli Inmart
+                        tarmogʻi
+                        mijozlarning tovarlarga boʻlgan ehtiyojini inobatga olib sifat kafolatini toʻla taʻminlashga
+                        intiladi. Koʻp yillardan buyon bozorda muqim oʻringa ega boʻlib kelayotgan taʻminotchilarimiz
+                        siymosidagi yirik va omadli kompaniyalar oʻzlarining uzluksiz mehnati tufayli tovarlarning boy
+                        assortimenti saqlanib turishida muhim rol oʻynaydilar. Barcha turdagi tovarlarimizning
+                        sertifikatlanganiga alohida urgʻu berish lozim.</p>
+                    <a class="btn_red" target="_blank"
+                       href="{% url 'stores:contact' %}">
+                        <span>Biz bilan bog'lanish</span>
+                        <img src="{% static 'images/rightarrow.png' %}" alt="">
+                    </a>
+                </div>
+                <img src="{% static 'images/smal-image-2.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

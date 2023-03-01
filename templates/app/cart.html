@@ -1,0 +1,113 @@
+{% extends 'bases.html' %}
+{% load static %}
+{% block css %}
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+{% endblock %}
+{% block content %}
+    <section class="intro">
+        <section class="container">
+            <form action="{% url 'stores:search' %}">
+                {% csrf_token %}
+                <div class="m-searchbar">
+                    <label for="searchInput">
+                        <button type="submit">
+                            <img src="{% static 'images/icons/search.png' %}" alt="search"/>
+                        </button>
+                    </label>
+                    <input
+                            name="q"
+                            id="searchInput"
+                            type="text"
+                            placeholder="Mahsulotlarni qidirish"
+                    />
+                </div>
+            </form>
+        </section>
+    </section>
+    <section class="Trash">
+        <div class="Trash-links">
+            <a href="{% url 'stores:cart' %}" class="active">
+                Savatcha
+            </a>
+            <i class="fa fa-arrow-right"></i>
+            <a href="{% url 'stores:checkout' %}">
+                Buyurtmani rasmiylashtirish
+            </a>
+        </div>
+        <div class="heading">
+            <h2>
+                Savatcha
+            </h2>
+        </div>
+        {% if items %}
+            <div class="products-item">
+                <div class="product-price product-price-desktop">
+                    {% for item in items %}
+                        <div class="list-items">
+                            <div class="left-item">
+                                <div class="image">
+                                    <img src="{{ item.product.get_images.image1 }}" alt="">
+                                </div>
+                                <div class="content">
+                                    <h2>
+                                        {{ item.product.name }}
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="count-btn">
+                                <span class="minus" onclick="updateUserOrder({{ item.product.id }}, 'remove')">-</span>
+                                <span class="num">{{ item.quantity }}</span>
+                                <span class="plus" onclick="updateUserOrder({{ item.product.id }}, 'add')">+</span>
+                            </div>
+                            <div class="right-item">
+                                <h3 class="price">{{ item.get_total.total }} so'm</h3>
+                                <div class="close_btn">
+                                    <i class="fas fa-times" onclick="orderRemove({{ item.product.id }})"></i>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="total-price">
+                    <h2 class="total">
+                        Jami
+                    </h2>
+                    <div class="products_names">
+                        <div class="item-1">
+                            <p>
+                                Mahsulotlar:
+                            </p>
+                            <span>{{ order.get_cart_items }} ta</span>
+                        </div>
+                        <div class="item-1">
+                            <p>
+                                Chegirma:
+                            </p>
+                            <span>{{ order.get_cart_total.total_stock }} so’m</span>
+                        </div>
+                        <div class="item-1">
+                            <p>
+                                Jami narxi:
+                            </p>
+                            <span>{{ order.get_cart_total.total }} so’m</span>
+                        </div>
+                    </div>
+                    <a href="{% url 'stores:checkout' %}" class="btn_red">
+                        Buyurtma berish
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}
